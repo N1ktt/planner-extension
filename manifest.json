@@ -1,0 +1,31 @@
+{
+    "name": "Planner tracker",
+    "description": "Tracks your videos you watched on Youtube.",
+    "version": "0.1",
+    "manifest_version": 3,
+    
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "Planner tracker",
+        "default_popup": "/popup/popup.html"
+    },
+    "permissions": [
+        "scripting",
+        "tabs",
+        "notifications",
+        "nativeMessaging",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["https://*.youtube.com/watch*"],
+          "js": ["link-copy.js"],
+          "run_at":"document_end"
+        }
+      ]
+}

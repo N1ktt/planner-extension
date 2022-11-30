@@ -1,0 +1,46 @@
+body{
+    background-color: #1E1E25;
+    min-width: 200px;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0;
+    padding: 5px;
+}
+* {
+    font-family: Tahoma, sans-serif;
+    color: #fafafa;
+  }
+.error-box {
+    display: none;
+  }
+.error-box p {
+    padding: 10px 50px;
+    background-color: red;
+  }
+
+
+input[type=button] {
+    font-size: large;
+    font-weight: bold;
+    color: #fafafa;
+    background-color: #0096FF;
+    border: 0 solid #0096FF;
+    padding: 5px 15px;
+    margin-top: 10px;
+  }
+input[type=button]:hover {
+    cursor: pointer;
+    outline: 3px solid #D9D9D9;
+  }
+
+
+
+input[type=text], input[type=password], input[type=text],  input[type=password] {
+    font-size: larger;
+    color: #000;
+    border: 0 solid #fff;
+    padding: 6px;
+  }
+input[type=text]:focus-visible, input[type=password]:focus-visible, input[type=text]:focus-visible, input[type=password]:focus-visible {
+    outline: 3px solid #D9D9D9;
+  }
