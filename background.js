@@ -48,25 +48,33 @@ console.log("background works")
 async function handleMessage(request, sender, sendResponse) {
     let link = await request.link
     console.log(`link: ${request.link}`)
-    let token = await chrome.storage.local.get(["token"])
-    token = token.token
-    console.log(token)
-    const data = { 
-        token : token,
-        link : link
+    let prevLink = await chrome.storage.session.get(["link"])
+    console.log(prevLink)
+    if(prevLink.link == link){
+        return sendResponse({ response: "Link the same" })
+    }else{
+        chrome.storage.session.set({ link : link })
+        let token = await chrome.storage.local.get(["token"])
+        token = token.token
+        console.log(token)
+        const data = { 
+            token : token,
+            link : link
+        }
+        console.log(data)
+        const options = {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+        const res = await fetch("http://127.0.0.1:3000/api/getYoutubeData", options)
+        const results = await res.json()
+        console.log(results)
+        sendResponse({ response: "Done" })
     }
-    console.log(data)
-    const options = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-    const res = await fetch("http://127.0.0.1:3000/api/getYoutubeData", options)
-    const results = await res.json()
-    console.log(results)
-    sendResponse({ response: "Done" })
+    
 }
   
 chrome.runtime.onMessage.addListener(handleMessage)

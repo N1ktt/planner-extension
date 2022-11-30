@@ -46,12 +46,11 @@
 
 
 
-let link = window.location.toString()
 
-console.log(link)
 
-function handleResponse(message){
-    console.log(`STATUS: ${message.response}`)
+async function handleResponse(message){
+    let messresp = await message
+    console.log(`STATUS: ${messresp}`)
 }
   
 function handleError(error){
@@ -59,6 +58,8 @@ function handleError(error){
 }
   
 function notifyBackgroundPage(e){
+    let link = window.location.toString()
+    console.log(link)
     const sending = chrome.runtime.sendMessage({
         link: link,
     })
@@ -67,3 +68,4 @@ function notifyBackgroundPage(e){
   
 notifyBackgroundPage()
 
+setInterval(notifyBackgroundPage,5000)
