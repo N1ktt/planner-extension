@@ -1,1 +1,1 @@
-# planner-extension
+Rozszerzenie do przeglądarki Google Chrome, które po zalogowaniu zapisuje linki do filmów obejrzanych na platformie Youtube. Rejestracja i lista filmów dostępna jest na [tej stronie internetowej](https://planner-kccm.onrender.com).
